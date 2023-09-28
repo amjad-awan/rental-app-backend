@@ -109,6 +109,9 @@ app.use("/api/v1/order", orderRoute);
 // app.use("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
+app.get("/",(req, res)=>{
+  res.send("api is running")
+})
 
 app.listen(PORT, () => {
   console.log(`app is running at ${PORT}`.yellow);
