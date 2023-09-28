@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addVehicleController,
+  aggregateController,
   getFilteredByModalVehiclesController,
   getFilteredVehiclesController,
   getPriceFilteredVehiclesController,
@@ -24,6 +25,7 @@ router.get("/get-filtered-vehicles/:page", getFilteredVehiclesController);
 router.get("/get-price-filtered-vehicles", getPriceFilteredVehiclesController);
 //get filtered vehicles by modal
 router.get("/get-vehicles-by-modal/:vehiclemodal", getFilteredByModalVehiclesController);
+router.get("/vehicles-by-rent", aggregateController);
 
 
 export default router;

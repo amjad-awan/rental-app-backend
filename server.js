@@ -74,8 +74,8 @@ app.put(
     // First, delete the old image using its public ID
     await v2.uploader.destroy(public_id);
 
-     // Now, upload the new image with the same public ID
-     await v2.uploader.upload(
+    // Now, upload the new image with the same public ID
+    await v2.uploader.upload(
       req.file.path,
       { public_id: public_id },
       (error, result) => {
@@ -99,7 +99,6 @@ app.use("/api/v1/vehiclelatlong", vehicleLatLong);
 
 app.use("/api/v1/userlatlong", userLatLong);
 app.use("/api/v1/order", orderRoute);
-
 
 // app.use("/api/v1/photo", photoRoute);
 

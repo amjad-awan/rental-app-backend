@@ -1,10 +1,10 @@
+import orderModal from "../modals/orderModal.js";
 import userModal from "../modals/userModal.js";
 import vehicleModal from "../modals/vehicleModal.js";
 
 // get vehicle
 export const getVehicleController = async (req, res) => {
   //   const { vehicletype, phone, fueltype, vehcilemodal, vehcilename } = req.body;
-
   try {
     const Vehicles = await vehicleModal.find();
     res.status(200).json({
@@ -26,7 +26,7 @@ export const addVehicleController = async (req, res) => {
   try {
     // check this user's vehicle already exist or not
     const vehicleExist = await vehicleModal.findOne({ userId });
-    if(vehicleExist){
+    if (vehicleExist) {
       return res.status(403).json({
         success: true,
         message: "your vehicle already exists",
@@ -97,8 +97,6 @@ export const updateVehiclesController = async (req, res) => {
     });
   }
 };
-
-
 
 // filter vehicles
 export const getFilteredVehiclesController = async (req, res) => {
@@ -171,5 +169,25 @@ export const getFilteredByModalVehiclesController = async (req, res) => {
       success: false,
       message: "something went wronge",
     });
+  }
+};
+
+export const aggregateController = async (req, res) => {
+  try {
+    const result = await userModal.aggregate([
+      {
+        $lookup: {
+          from: "orders",
+          localField: "_id",
+          foreignField: "userId",
+          as: "order_info",
+        },
+      },
+    ]);
+
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
