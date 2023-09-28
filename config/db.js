@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const MONGODB_URI = "mongodb://localhost:27017/vehcile_rent"; // Replace with your MongoDB connection URL
+const MONGODB_URI = "mongodb+srv://amjadmalikf53:J4XXPDHtcIfuk7nB@cluster0.akgomod.mongodb.net/car-rental-app"; // Replace with your MongoDB connection URL
 
 export const connectDB = async () => {
   try {
